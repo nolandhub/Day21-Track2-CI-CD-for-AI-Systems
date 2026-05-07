@@ -14,6 +14,16 @@ def train(params: dict, data_path: str = "data/train_phase1.csv", eval_path: str
     df_eval = pd.read_csv(eval_path)
 
     # 2. Tách đặc trưng và nhãn
+    def engineer_features(df):
+        df["total_acidity"] = df["fixed acidity"] + df["volatile acidity"]
+        df["sugar_to_alcohol"] = df["residual sugar"] / (df["alcohol"] + 1e-5)
+        df["alcohol_density"] = df["alcohol"] * df["density"]
+        df["free_sulfur_ratio"] = df["free sulfur dioxide"] / (df["total sulfur dioxide"] + 1e-5)
+        return df
+
+    df_train = engineer_features(df_train)
+    df_eval = engineer_features(df_eval)
+
     X_train = df_train.drop(columns=["target"])
     y_train = df_train["target"]
     X_eval = df_eval.drop(columns=["target"])
@@ -22,7 +32,7 @@ def train(params: dict, data_path: str = "data/train_phase1.csv", eval_path: str
     with mlflow.start_run():
         # 3. Log tham số & Huấn luyện
         mlflow.log_params(params)
-        model = RandomForestClassifier(**params, random_state=42)
+        model = RandomForestClassifier(**params, class_weight="balanced", random_state=42)
         model.fit(X_train, y_train)
 
         # 4. Dự đoán & Tính chỉ số
