@@ -108,5 +108,5 @@ jobs:
           key: ${{ secrets.VM_SSH_KEY }}
           script: |
             sudo systemctl restart mlops-serve
-            sleep 10
+            sleep 30
             curl -f http://localhost:8000/health || exit 1
