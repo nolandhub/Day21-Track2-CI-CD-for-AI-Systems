@@ -3,7 +3,10 @@ name: MLOps Pipeline
 on:
   push:
     branches: [main, master]
-  workflow_dispatch:
+    paths:
+      - 'data/**.dvc'    # <- Pipeline được kích hoạt khi file .dvc thay đổi
+      - 'src/**.py'
+      - 'params.yaml'
 
 jobs:
   # JOB 1: Unit Test
