@@ -63,11 +63,11 @@ min_samples_split: 2
 
 Giải thích từng tham số:
 
-| Tham số | Ý nghĩa | Gợi ý giá trị thử nghiệm |
-|---|---|---|
-| n_estimators | Số lượng cây quyết định trong rừng | 50, 100, 200 |
-| max_depth | Độ sâu tối đa của mỗi cây | 3, 5, 10, None |
-| min_samples_split | Số mẫu tối thiểu để phân chia một nút | 2, 5, 10 |
+| Tham số           | Ý nghĩa                               | Gợi ý giá trị thử nghiệm |
+| ----------------- | ------------------------------------- | ------------------------ |
+| n_estimators      | Số lượng cây quyết định trong rừng    | 50, 100, 200             |
+| max_depth         | Độ sâu tối đa của mỗi cây             | 3, 5, 10, None           |
+| min_samples_split | Số mẫu tối thiểu để phân chia một nút | 2, 5, 10                 |
 
 ---
 
