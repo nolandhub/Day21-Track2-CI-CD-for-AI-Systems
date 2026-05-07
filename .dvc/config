@@ -1,0 +1,6 @@
+[core]
+    no_scm = True
+    remote = myremote
+['remote "myremote"']
+    url = gs://justlab-mlops-data/dvc
+    credentialpath = ../sa-key.json
